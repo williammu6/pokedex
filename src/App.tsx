@@ -6,8 +6,6 @@ import { PokemonType } from './interfaces/PokemonType';
 import ListPokemons from './components/ListPokemons';
 
 function App() {
-  var allPokemons: PokemonType[] = [];
-
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [pokemonsToShow, setPokemonsToShow] = useState<PokemonType[]>([]);
 
