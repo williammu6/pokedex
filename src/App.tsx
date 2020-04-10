@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+
+import api from './services/api';
+
+import { PokemonType } from './interfaces/PokemonType';
+import ListPokemons from './components/ListPokemons';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  var allPokemons: PokemonType[] = [];
+
+  const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+  const [pokemonsToShow, setPokemonsToShow] = useState<PokemonType[]>([]);
+
+  const filterPokemons = (name: string) => {
+    setPokemonsToShow(pokemons.filter((pokemon) => pokemon.name.includes(name)));
+  };
+
+  const getPokemons = async () => {
+    try {
+      const response = await api.get('pokemon?limit=784');
+      let pokemons = response.data['results'] as PokemonType[];
+      pokemons = pokemons.map((pokemon) => {
+        const split = pokemon.url.split('/');
+        const id = parseInt(split[split.length - 2]);
+        return {
+          id,
+          name: pokemon.name,
+          url: pokemon.url,
+          imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+        };
+      });
+      setPokemons(pokemons);
+      setPokemonsToShow(pokemons);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    getPokemons();
+  }, []);
+
+  return <ListPokemons pokemons={pokemonsToShow} filterPokemons={filterPokemons} />;
 }
 
 export default App;

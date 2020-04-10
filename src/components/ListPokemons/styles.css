@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  flex-direction: column;
+}
+.pokemon-list {
+  display: inline-flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokeSearchField {
+  height: 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 24px;
+  padding: 8px;
+  width: 200px;
+}
