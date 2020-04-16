@@ -1,0 +1,19 @@
+.container {
+  position: absolute;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+  display: flex;
+  flex-directions: 'row';
+  align-items: 'center';
+  justify-content: 'space-between';
+}
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 20px;
+  width: 20px;
+  color: '#323232';
+  border-radius: 5px;
+}
