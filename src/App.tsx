@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import api from './services/api';
 
 import { PokemonType } from './interfaces/PokemonType';
+
 import ListPokemons from './components/ListPokemons';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 
   const getPokemons = async () => {
     try {
-      const response = await api.get('pokemon?limit=784');
+      const response = await api.get('pokemon?limit=100');
       let pokemons = response.data['results'] as PokemonType[];
       pokemons = pokemons.map((pokemon) => {
         const split = pokemon.url.split('/');

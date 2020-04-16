@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ListPokemons: React.FC<Props> = ({ pokemons, filterPokemons }) => {
+
   return (
     <div className="container">
       <input
